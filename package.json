@@ -1,0 +1,21 @@
+{
+  "name": "js-exercises",
+  "version": "1.0.0",
+  "description": "Mancala",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "hamjest": "^3.7.1",
+    "jest": "^26.4.2",
+    "jest-extended": "^0.11.5"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "jest-extended"
+    ]
+  },
+  "dependencies": {
+    "lodash": "^4.17.20"
+  }
+}
