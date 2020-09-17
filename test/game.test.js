@@ -3,7 +3,7 @@ const Game = require("../lib/game")
 
 describe("#constructor", () => {
     test("sets up a new game", () => {
-        let game = new Game()
+        let game = new Game({})
 
         assertThat(game, hasProperties({
             currentPlayer: is("A"),
@@ -22,8 +22,8 @@ describe("#constructor", () => {
 
 describe("#playTurn", () => {
     test("plays a turn", () => {
-        let game = new Game()
-        game.playTurn(0)
+        let game = new Game({})
+        game = game.playTurn(0)
 
         assertThat(game, hasProperties({
             currentPlayer: is("B"),
