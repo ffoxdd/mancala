@@ -1,4 +1,4 @@
-const {assertThat, hasProperty, hasProperties, is, not, isEmpty, contains, allOf} = require('hamjest')
+const {assertThat, hasProperties, is} = require('hamjest')
 const Game = require("../lib/game")
 
 describe("#constructor", () => {
@@ -9,35 +9,12 @@ describe("#constructor", () => {
             currentPlayer: is("A"),
 
             board: hasProperties({
-                hand: hasProperties({stones: is(0)}),
+                hand: is(0),
 
-                sides: allOf(
-                    hasProperty("A", hasProperties({
-                        pockets: contains(
-                            hasProperties({stones: is(4)}),
-                            hasProperties({stones: is(4)}),
-                            hasProperties({stones: is(4)}),
-                            hasProperties({stones: is(4)}),
-                            hasProperties({stones: is(4)}),
-                            hasProperties({stones: is(4)}),
-                        ),
-
-                        mancala: hasProperties({stones: is(0)}),
-                    })),
-
-                    hasProperty("B", hasProperties({
-                        pockets: contains(
-                            hasProperties({stones: is(4)}),
-                            hasProperties({stones: is(4)}),
-                            hasProperties({stones: is(4)}),
-                            hasProperties({stones: is(4)}),
-                            hasProperties({stones: is(4)}),
-                            hasProperties({stones: is(4)}),
-                        ),
-
-                        mancala: hasProperties({stones: is(0)}),
-                    })),
-                ),
+                description: is(
+                    "A0:4,A1:4,A2:4,A3:4,A4:4,A5:4,AM:0," +
+                    "B0:4,B1:4,B2:4,B3:4,B4:4,B5:4,BM:0"
+                )
             }),
         }))
     })
@@ -46,42 +23,18 @@ describe("#constructor", () => {
 describe("#playTurn", () => {
     test("plays a turn", () => {
         let game = new Game()
-
         game.playTurn(0)
 
         assertThat(game, hasProperties({
             currentPlayer: is("B"),
 
             board: hasProperties({
-                hand: hasProperties({stones: is(0)}),
+                hand: is(0),
 
-                sides: allOf(
-                    hasProperty("A", hasProperties({
-                        pockets: contains(
-                            hasProperties({stones: is(0)}),
-                            hasProperties({stones: is(5)}),
-                            hasProperties({stones: is(5)}),
-                            hasProperties({stones: is(5)}),
-                            hasProperties({stones: is(5)}),
-                            hasProperties({stones: is(4)}),
-                        ),
-
-                        mancala: hasProperties({stones: is(0)}),
-                    })),
-
-                    hasProperty("B", hasProperties({
-                        pockets: contains(
-                            hasProperties({stones: is(4)}),
-                            hasProperties({stones: is(4)}),
-                            hasProperties({stones: is(4)}),
-                            hasProperties({stones: is(4)}),
-                            hasProperties({stones: is(4)}),
-                            hasProperties({stones: is(4)}),
-                        ),
-
-                        mancala: hasProperties({stones: is(0)}),
-                    })),
-                ),
+                description: is(
+                    "A0:0,A1:5,A2:5,A3:5,A4:5,A5:4,AM:0," +
+                    "B0:4,B1:4,B2:4,B3:4,B4:4,B5:4,BM:0"
+                )
             }),
         }))
     })
