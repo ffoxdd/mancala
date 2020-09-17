@@ -6,36 +6,39 @@ describe("#constructor", () => {
         let game = new Game()
 
         assertThat(game, hasProperties({
-            currentPlayer: is(Game.PLAYER_A),
-            hand: hasProperties({stones: is(0)}),
+            currentPlayer: is("A"),
 
-            sides: allOf(
-                hasProperty(Game.PLAYER_A, hasProperties({
-                    pockets: contains(
-                        hasProperties({stones: is(4)}),
-                        hasProperties({stones: is(4)}),
-                        hasProperties({stones: is(4)}),
-                        hasProperties({stones: is(4)}),
-                        hasProperties({stones: is(4)}),
-                        hasProperties({stones: is(4)}),
-                    ),
+            board: hasProperties({
+                hand: hasProperties({stones: is(0)}),
 
-                    mancala: hasProperties({stones: is(0)}),
-                })),
+                sides: allOf(
+                    hasProperty("A", hasProperties({
+                        pockets: contains(
+                            hasProperties({stones: is(4)}),
+                            hasProperties({stones: is(4)}),
+                            hasProperties({stones: is(4)}),
+                            hasProperties({stones: is(4)}),
+                            hasProperties({stones: is(4)}),
+                            hasProperties({stones: is(4)}),
+                        ),
 
-                hasProperty(Game.PLAYER_B, hasProperties({
-                    pockets: contains(
-                        hasProperties({stones: is(4)}),
-                        hasProperties({stones: is(4)}),
-                        hasProperties({stones: is(4)}),
-                        hasProperties({stones: is(4)}),
-                        hasProperties({stones: is(4)}),
-                        hasProperties({stones: is(4)}),
-                    ),
+                        mancala: hasProperties({stones: is(0)}),
+                    })),
 
-                    mancala: hasProperties({stones: is(0)}),
-                }))
-            )
+                    hasProperty("B", hasProperties({
+                        pockets: contains(
+                            hasProperties({stones: is(4)}),
+                            hasProperties({stones: is(4)}),
+                            hasProperties({stones: is(4)}),
+                            hasProperties({stones: is(4)}),
+                            hasProperties({stones: is(4)}),
+                            hasProperties({stones: is(4)}),
+                        ),
+
+                        mancala: hasProperties({stones: is(0)}),
+                    })),
+                ),
+            }),
         }))
     })
 })
@@ -47,36 +50,39 @@ describe("#playTurn", () => {
         game.playTurn(0)
 
         assertThat(game, hasProperties({
-            currentPlayer: is(Game.PLAYER_B),
-            hand: hasProperties({stones: is(0)}),
+            currentPlayer: is("B"),
 
-            sides: allOf(
-                hasProperty(Game.PLAYER_A, hasProperties({
-                    pockets: contains(
-                        hasProperties({stones: is(0)}),
-                        hasProperties({stones: is(5)}),
-                        hasProperties({stones: is(5)}),
-                        hasProperties({stones: is(5)}),
-                        hasProperties({stones: is(5)}),
-                        hasProperties({stones: is(4)}),
-                    ),
+            board: hasProperties({
+                hand: hasProperties({stones: is(0)}),
 
-                    mancala: hasProperties({stones: is(0)}),
-                })),
+                sides: allOf(
+                    hasProperty("A", hasProperties({
+                        pockets: contains(
+                            hasProperties({stones: is(0)}),
+                            hasProperties({stones: is(5)}),
+                            hasProperties({stones: is(5)}),
+                            hasProperties({stones: is(5)}),
+                            hasProperties({stones: is(5)}),
+                            hasProperties({stones: is(4)}),
+                        ),
 
-                hasProperty(Game.PLAYER_B, hasProperties({
-                    pockets: contains(
-                        hasProperties({stones: is(4)}),
-                        hasProperties({stones: is(4)}),
-                        hasProperties({stones: is(4)}),
-                        hasProperties({stones: is(4)}),
-                        hasProperties({stones: is(4)}),
-                        hasProperties({stones: is(4)}),
-                    ),
+                        mancala: hasProperties({stones: is(0)}),
+                    })),
 
-                    mancala: hasProperties({stones: is(0)}),
-                }))
-            )
+                    hasProperty("B", hasProperties({
+                        pockets: contains(
+                            hasProperties({stones: is(4)}),
+                            hasProperties({stones: is(4)}),
+                            hasProperties({stones: is(4)}),
+                            hasProperties({stones: is(4)}),
+                            hasProperties({stones: is(4)}),
+                            hasProperties({stones: is(4)}),
+                        ),
+
+                        mancala: hasProperties({stones: is(0)}),
+                    })),
+                ),
+            }),
         }))
     })
 })
