@@ -112,7 +112,7 @@ describe("#playTurn", () => {
                 hand: is(0),
 
                 description: is(
-                    "A0:5,A1:0,A2:5,A3:5,A4:5,A5:1,AM:6," +
+                    "A0:5,A1:0,A2:5,A3:5,A4:5,A5:0,AM:7," +
                     "B0:0,B1:5,B2:0,B3:5,B4:5,B5:5,BM:1"
                 )
             }),
