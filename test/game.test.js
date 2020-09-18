@@ -56,4 +56,25 @@ describe("#playTurn", () => {
             }),
         }))
     })
+
+    test("captures opponent stones", () => {
+        let game = new Game({})
+
+        game = game.playTurn(5)
+        game = game.playTurn(2)
+        game = game.playTurn(1)
+
+        assertThat(game, hasProperties({
+            currentPlayer: is("B"),
+
+            board: hasProperties({
+                hand: is(0),
+
+                description: is(
+                    "A0:5,A1:0,A2:5,A3:5,A4:5,A5:1,AM:6," +
+                    "B0:0,B1:5,B2:0,B3:5,B4:5,B5:5,BM:1"
+                )
+            }),
+        }))
+    })
 })
