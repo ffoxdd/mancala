@@ -118,4 +118,30 @@ describe("#playTurn", () => {
             }),
         }))
     })
+
+    test("does nothing when playing at an empty pocket", () => {
+        let game = new Game({
+            board: new Board({
+                pockets: OrderedMap([
+                    [new BoardPosition({player: "A", index: 0}), 4],
+                    [new BoardPosition({player: "A", index: 1}), 4],
+                    [new BoardPosition({player: "A", index: 2}), 0],
+                    [new BoardPosition({player: "A", index: 3}), 4],
+                    [new BoardPosition({player: "A", index: 4}), 4],
+                    [new BoardPosition({player: "A", index: 5}), 4],
+                    [new BoardPosition({player: "A", isMancala: true}), 0],
+                    [new BoardPosition({player: "B", index: 0}), 4],
+                    [new BoardPosition({player: "B", index: 1}), 4],
+                    [new BoardPosition({player: "B", index: 2}), 4],
+                    [new BoardPosition({player: "B", index: 3}), 4],
+                    [new BoardPosition({player: "B", index: 4}), 4],
+                    [new BoardPosition({player: "B", index: 5}), 4],
+                    [new BoardPosition({player: "B", isMancala: true}), 0],
+                ]),
+            }),
+        })
+
+        let nextGame = game.playTurn(2)
+        assertThat(nextGame,  is(game))
+    })
 })
