@@ -163,7 +163,7 @@ describe("#playTurn", () => {
         assertThat(nextGame, is(game))
     })
 
-    test("doesn't perorm a capture when there are no stones on the opponent's side", () => {
+    test("doesn't perform a capture when there are no stones on the opponent's side", () => {
         let game = new Game({
             board: new Board({
                 pockets: OrderedMap([
@@ -295,6 +295,45 @@ describe(".fromJSON", () => {
             ),
 
             isOver: is(false),
+        }))
+    })
+})
+
+describe("#toJSON", () => {
+    test("constructs a game from JSON", () => {
+        let game = new Game({
+            currentPlayer: "A",
+
+            board: new Board({
+                pockets: OrderedMap([
+                    [new BoardPosition({player: "A", index: 0}), 1],
+                    [new BoardPosition({player: "A", index: 1}), 0],
+                    [new BoardPosition({player: "A", index: 2}), 0],
+                    [new BoardPosition({player: "A", index: 3}), 0],
+                    [new BoardPosition({player: "A", index: 4}), 0],
+                    [new BoardPosition({player: "A", index: 5}), 0],
+                    [new BoardPosition({player: "A", isMancala: true}), 0],
+                    [new BoardPosition({player: "B", index: 0}), 1],
+                    [new BoardPosition({player: "B", index: 1}), 0],
+                    [new BoardPosition({player: "B", index: 2}), 0],
+                    [new BoardPosition({player: "B", index: 3}), 0],
+                    [new BoardPosition({player: "B", index: 4}), 0],
+                    [new BoardPosition({player: "B", index: 5}), 0],
+                    [new BoardPosition({player: "B", isMancala: true}), 0],
+                ]),
+            }),
+
+            isOver: false,
+        })
+
+        assertThat(game.toJSON(), hasProperties({
+            current_player: "A",
+
+            board: is(
+                "A0:1,A1:0,A2:0,A3:0,A4:0,A5:0,AM:0,B0:1,B1:0,B2:0,B3:0,B4:0,B5:0,BM:0"
+            ),
+
+            is_over: is(false),
         }))
     })
 })
