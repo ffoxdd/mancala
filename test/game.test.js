@@ -236,4 +236,34 @@ describe("#playTurn", () => {
             isOver: is(true),
         }))
     })
+
+
+
+    test("can play a full game", () => {
+        let game = new Game({})
+
+        const moves = [
+          2, 0, 2, 3, 2, 4, 3, 3, 2, 4,
+          5, 5, 5, 4, 1, 0, 0, 5, 3, 5,
+          5, 3, 5, 4, 5, 2, 5, 1, 5, 3,
+          4, 5, 2, 3, 3, 5, 2, 4, 4, 5
+        ]
+
+        for (const index of moves) {
+            game = game.playTurn(index)
+        }
+
+        assertThat(game, hasProperties({
+            board: hasProperties({
+                hand: is(0),
+
+                description: is(
+                    "A0:0,A1:0,A2:0,A3:0,A4:0,A5:0,AM:28," +
+                    "B0:0,B1:0,B2:0,B3:0,B4:0,B5:0,BM:20"
+                )
+            }),
+
+            isOver: is(true),
+        }))
+    })
 })
