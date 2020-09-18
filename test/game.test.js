@@ -144,4 +144,42 @@ describe("#playTurn", () => {
         let nextGame = game.playTurn(2)
         assertThat(nextGame,  is(game))
     })
+
+    test("captures remaining stones and ends the game", () => {
+        let game = new Game({
+            board: new Board({
+                pockets: OrderedMap([
+                    [new BoardPosition({player: "A", index: 0}), 4],
+                    [new BoardPosition({player: "A", index: 1}), 4],
+                    [new BoardPosition({player: "A", index: 2}), 4],
+                    [new BoardPosition({player: "A", index: 3}), 4],
+                    [new BoardPosition({player: "A", index: 4}), 4],
+                    [new BoardPosition({player: "A", index: 5}), 0],
+                    [new BoardPosition({player: "A", isMancala: true}), 0],
+                    [new BoardPosition({player: "B", index: 0}), 0],
+                    [new BoardPosition({player: "B", index: 1}), 0],
+                    [new BoardPosition({player: "B", index: 2}), 0],
+                    [new BoardPosition({player: "B", index: 3}), 0],
+                    [new BoardPosition({player: "B", index: 4}), 0],
+                    [new BoardPosition({player: "B", index: 5}), 1],
+                    [new BoardPosition({player: "B", isMancala: true}), 0],
+                ]),
+            }),
+
+            currentPlayer: "B",
+        })
+
+        game = game.playTurn(5)
+
+        assertThat(game, hasProperties({
+            board: hasProperties({
+                hand: is(0),
+
+                description: is(
+                    "A0:0,A1:0,A2:0,A3:0,A4:0,A5:0,AM:20," +
+                    "B0:0,B1:0,B2:0,B3:0,B4:0,B5:0,BM:1"
+                )
+            }),
+        }))
+    })
 })
