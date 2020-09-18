@@ -275,3 +275,26 @@ describe("#playTurn", () => {
         }))
     })
 })
+
+describe(".fromJSON", () => {
+    test("constructs a game from JSON", () => {
+        const json = {
+            current_player: "B",
+            board: "A0:5,A1:0,A2:5,A3:5,A4:5,A5:0,AM:7,B0:0,B1:5,B2:0,B3:5,B4:5,B5:5,BM:1",
+            isOver: false,
+        }
+
+        game = Game.fromJSON(json)
+
+        assertThat(game, hasProperties({
+            currentPlayer: "B",
+
+            board: allOf(
+                hasProperties({hand: is(0)}),
+                hasConfiguration("A0:5,A1:0,A2:5,A3:5,A4:5,A5:0,AM:7,B0:0,B1:5,B2:0,B3:5,B4:5,B5:5,BM:1")
+            ),
+
+            isOver: is(false),
+        }))
+    })
+})
