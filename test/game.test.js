@@ -17,8 +17,10 @@ describe("#constructor", () => {
                 description: is(
                     "A0:4,A1:4,A2:4,A3:4,A4:4,A5:4,AM:0," +
                     "B0:4,B1:4,B2:4,B3:4,B4:4,B5:4,BM:0"
-                )
+                ),
             }),
+
+            isOver: is(false),
         }))
     })
 })
@@ -37,8 +39,10 @@ describe("#playTurn", () => {
                 description: is(
                     "A0:0,A1:5,A2:5,A3:5,A4:5,A5:4,AM:0," +
                     "B0:4,B1:4,B2:4,B3:4,B4:4,B5:4,BM:0"
-                )
+                ),
             }),
+
+            isOver: is(false),
         }))
     })
 
@@ -75,8 +79,10 @@ describe("#playTurn", () => {
                 description: is(
                     "A0:2,A1:0,A2:0,A3:0,A4:0,A5:0,AM:1," +
                     "B0:1,B1:1,B2:1,B3:1,B4:1,B5:1,BM:0"
-                )
+                ),
             }),
+
+            isOver: is(false),
         }))
     })
 
@@ -93,8 +99,10 @@ describe("#playTurn", () => {
                 description: is(
                     "A0:4,A1:4,A2:0,A3:5,A4:5,A5:5,AM:1," +
                     "B0:4,B1:4,B2:4,B3:4,B4:4,B5:4,BM:0"
-                )
+                ),
             }),
+
+            isOver: is(false),
         }))
     })
 
@@ -116,6 +124,8 @@ describe("#playTurn", () => {
                     "B0:0,B1:5,B2:0,B3:5,B4:5,B5:5,BM:1"
                 )
             }),
+
+            isOver: is(false),
         }))
     })
 
@@ -142,7 +152,7 @@ describe("#playTurn", () => {
         })
 
         let nextGame = game.playTurn(2)
-        assertThat(nextGame,  is(game))
+        assertThat(nextGame, is(game))
     })
 
     test("captures remaining stones and ends the game", () => {
@@ -180,6 +190,8 @@ describe("#playTurn", () => {
                     "B0:0,B1:0,B2:0,B3:0,B4:0,B5:0,BM:1"
                 )
             }),
+
+            isOver: is(true),
         }))
     })
 })
