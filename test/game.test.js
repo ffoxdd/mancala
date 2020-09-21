@@ -245,8 +245,6 @@ describe("#playTurn", () => {
         }))
     })
 
-
-
     test("can play a full game", () => {
         let game = new Game({})
 
@@ -281,7 +279,7 @@ describe(".fromJSON", () => {
         const json = {
             current_player: "B",
             board: "A0:5,A1:0,A2:5,A3:5,A4:5,A5:0,AM:7,B0:0,B1:5,B2:0,B3:5,B4:5,B5:5,BM:1",
-            isOver: false,
+            is_over: true,
         }
 
         game = Game.fromJSON(json)
@@ -294,13 +292,13 @@ describe(".fromJSON", () => {
                 hasConfiguration("A0:5,A1:0,A2:5,A3:5,A4:5,A5:0,AM:7,B0:0,B1:5,B2:0,B3:5,B4:5,B5:5,BM:1")
             ),
 
-            isOver: is(false),
+            isOver: is(true),
         }))
     })
 })
 
 describe("#toJSON", () => {
-    test("constructs a game from JSON", () => {
+    test("returns a JSON representation of the game", () => {
         let game = new Game({
             currentPlayer: "A",
 
@@ -323,7 +321,7 @@ describe("#toJSON", () => {
                 ]),
             }),
 
-            isOver: false,
+            isOver: true,
         })
 
         assertThat(game.toJSON(), hasProperties({
@@ -333,7 +331,7 @@ describe("#toJSON", () => {
                 "A0:1,A1:0,A2:0,A3:0,A4:0,A5:0,AM:0,B0:1,B1:0,B2:0,B3:0,B4:0,B5:0,BM:0"
             ),
 
-            is_over: is(false),
+            is_over: is(true),
         }))
     })
 })
