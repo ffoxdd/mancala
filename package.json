@@ -2,6 +2,7 @@
   "name": "mancala",
   "version": "1.0.0",
   "description": "Mancala",
+  "main": "mancala.js",
   "scripts": {
     "test": "jest"
   },
